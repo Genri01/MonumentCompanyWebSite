@@ -1,0 +1,22 @@
+.catalog_wrapper {
+  width: 100%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 180px;
+  flex-wrap: wrap;
+}
+
+.worksImage {
+  width: 800px;
+  margin: 10px;
+  height: 600px;
+}
+
+.worksImageMobile {
+  width: 90%;
+  margin: 10px;
+  height: auto;
+}

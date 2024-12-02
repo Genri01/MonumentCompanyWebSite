@@ -1,0 +1,26 @@
+.catalog_wrapper {
+  width: 100%;
+  /* height: 100%; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 180px;
+  flex-wrap: wrap;
+} 
+
+.titleFilter {
+  width: 100%;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  margin-top: 50px;
+}
+
+.titleFilterMobile {
+  width: 100%;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+}

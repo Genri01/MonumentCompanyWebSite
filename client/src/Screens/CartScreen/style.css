@@ -1,0 +1,17 @@
+.cart_screen {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+
+.backgroundCartProduct {
+  display: flex;
+  width: 100%;
+  background-color: #fff;
+  justify-content: center;
+  align-items: center;
+}

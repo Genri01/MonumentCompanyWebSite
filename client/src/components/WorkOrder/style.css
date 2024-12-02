@@ -1,0 +1,39 @@
+.workOrderWrapper {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  flex-direction: column;
+}
+
+.workOrderItemWrapper {
+  display: flex;
+  width: 70%;
+  height: auto;
+  align-items: center;
+  justify-content: center;
+  margin: 80px 0px;
+  flex-wrap: wrap;
+}
+
+.mobileWorkOrderItemWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  height: auto;
+  align-items: center;
+  justify-content: center;
+  margin: 40px 0px;
+  flex-wrap: wrap;
+}
+
+.workOrderBtnWrapper {
+  display: flex;
+  width: 100%;
+  height: 80px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 70px;
+}
