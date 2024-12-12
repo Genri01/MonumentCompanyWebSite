@@ -19,7 +19,7 @@ app.use(bodyParser.json({limit: '500mb'}));
 
 app.use(cors({
     credentials: true,  
-    origin: process.env.NODE_ENV == 'development' ? 'http://localhost:3000' : 'https://mcshopingbot.netlify.app/' ,
+    origin: process.env.NODE_ENV == 'development' ? 'http://localhost:3000' : 'https://mcshopingbot.netlify.app' ,
     methods: "GET, POST, PATCH, DELETE, OPTIONS",
   },
   {
