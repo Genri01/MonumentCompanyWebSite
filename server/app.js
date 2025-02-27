@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({ limit: "500mb", extended: true, parameterLimit: 
 app.use(bodyParser.json({limit: '500mb'}));
 
 app.use(cors({
-    // credentials: true,  
+    credentials: true,  
     origin: process.env.NODE_ENV == 'development' ? 'http://localhost:3000' : 'https://monumentcompany.ru' ,
     methods: "GET, POST, PATCH, DELETE, OPTIONS",
   },
