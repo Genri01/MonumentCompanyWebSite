@@ -23,7 +23,7 @@ export default function TopMonument(props) {
       Собственное производство памятников, мемориальных комплексов по типовым и индивидуальным проектам.
       </div>
       <div className='buttonContainer'>
-        <OrangeButton  width={242} text="Перейти в каталог" onClick={() => { navigate('/catalog/all'); }} />
+        <OrangeButton  width={242} text="Перейти в каталог" onClick={() => { navigate('/app/all'); }} />
       </div> 
     </div>
   );

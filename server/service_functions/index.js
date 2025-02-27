@@ -2,6 +2,7 @@ const moment = require('moment');
 const AdminDto = require('../dtos/admin-dto'); 
 const UsersDto = require('../dtos/user-dto'); 
 const ProfileDto = require('../dtos/profile-dto'); 
+const products = require('../config/configproduct').products
 
 async function noDubleElements(arr) {
   let arr_3 = arr.reduce((result, item) => {
@@ -60,8 +61,62 @@ let objTmp = {}
 };
 
 
+ 
+const getCategoryBtnBot = (products) => {
+  
+  const arrCat = products.map(product => ({
+    text: product.text, 
+    subcategory: product.monuments.map(monument => ({
+      text: monument.subtext,
+      action: monument.subtext
+    })),
+    action: product.text
+  }));
+    
+  return arrCat;
+}
+ 
+const getCatologNumberItem = (itemNumber, answer) => {
+ 
+ let number = Number(itemNumber) - 1
+ let result = {}
+ let err = false;
+
+  products.map(product => { 
+    if(product.text == answer[5]) {
+      product.monuments.map((monument) => {
+
+        if(monument.subtext == answer[6]) {
+
+          if(('Горизонтальный' == answer[6]) && ('Мрамор' == answer[5])) {
+            if((Number(itemNumber) > 85) && (Number(itemNumber) < 110)) {
+              result = {
+                ...monument.items[itemNumber - 86], 
+              }
+            } else {
+              err = true
+            }
+          } else {
+            if((Number(number) >= Number(monument.items[0].id)) && (Number(number) <= Number(monument.items[monument.items.length-1].id))) {
+              result = {
+                ...monument.items[number], 
+              }
+            } else {
+              err = true
+            }
+          } 
+        }
+      })
+    } 
+  });
+ 
+  return err ? false : result;
+}
+ 
 module.exports = { 
   noDubleElements,
   getObjkey,
+  getCategoryBtnBot,
+  getCatologNumberItem,
   removeEmpty, 
 } 

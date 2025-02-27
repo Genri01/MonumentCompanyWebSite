@@ -19,7 +19,7 @@
     "dotenv": "^16.3.1",
     "express": "^4.17.1",
     "express-fileupload": "^1.4.0",
-    "express-validator": "^6.9.2",
+    "express-validator": "^6.9.2", 
     "input-formdata": "^1.0.2",
     "kysely": "^0.27.4",
     "libreoffice-convert": "^1.6.0",
@@ -50,8 +50,7 @@
       "react-app",
       "react-app/jest"
     ]
-  },
-  "proxy": "http://127.0.0.1:4000",
+  },   
   "browserslist": {
     "production": [
       ">0.2%",

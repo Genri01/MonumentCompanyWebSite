@@ -92,7 +92,7 @@ class MailService {
       })
 
       transporter.verify(async function (error, success) {   
-        await ctx.sendMessage(`${ ctx.from.username || ctx.from.first_name || ctx.from.last_name }!\n ${error ? 'Фаил не отправился,произошла ошибка:(': 'Я так же отправил фаил на почту.'}`).then(({ message_id }) => { 
+        await ctx.sendMessage(`${ ctx.from.username || ctx.from.first_name || ctx.from.last_name }!\n ${error ? 'Файл не отправился,произошла ошибка:(': 'Я так же отправил файл на почту.'}`).then(({ message_id }) => { 
             ctx.session.msgIds.push(message_id);  
             setTimeout(async() => {   
 

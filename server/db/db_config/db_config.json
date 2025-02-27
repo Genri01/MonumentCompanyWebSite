@@ -1,9 +1,9 @@
 {
   "development": {
     "username": "gen_user",
-    "password": "bitbunker2048",
+    "password": "",
     "database": "default_db",
-    "host": "81.31.246.30",
+    "host": "",
     "port":"3306",
     "dialect": "mysql",
     "connectionLimit" : "1000",
@@ -11,18 +11,18 @@
   },
   "test": {
     "username": "gen_user",
-    "password": "bitbunker2048",
+    "password": "",
     "database": "default_db",
-    "host": "81.31.246.30",
+    "host": "",
     "dialect": "mysql",
     "connectionLimit" : "1000",
     "connectTimeout"  : "60 * 60 * 1000"    
   },
   "production": {
     "username": "gen_user",
-    "password": "bitbunker2048",
+    "password": "",
     "database": "default_db",
-    "host": "81.31.246.30",
+    "host": "",
     "dialect": "mysql",
     "connectionLimit" : "1000",
     "connectTimeout"  : "60 * 60 * 1000"    

@@ -1,102 +1,227 @@
-import React from 'react';
-import './style.css'; 
+import React,{ useState, useEffect, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { List, AutoSizer, WindowScroller, InfiniteLoader } from "react-virtualized";
 import Title from '../../components/Title';
 import CardsMonument from '../../components/CardsMonument';
 import { products } from '../../config';
-import { useSelector } from 'react-redux';
-// import { cart } from '../../redux/selectors';
 import FilterItem from '../../components/FilterItem';
-
+import Answer from '../../components/Answer';
+import FilterButton from '../../components/FilterButton';
+import { cart, cards } from '../../redux/selectors';
+import { setCardsProducts, setBotAppMod } from '../../redux/actions/app';
+import { setCategory } from '../../redux/actions/cart'; 
+import { getCategoryChank, getCookie,setCookie,deleteCookie } from '../../hooks/helpservice'
+import { useScroll } from '../../hooks/useScroll'
+ 
+import images from '../../assets/images';
+import images_shared from '../../shared-images'
+import 'react-virtualized/styles.css';
+import './style.css'; 
+ 
 function CatalogScreen(props) {
 
   const { mobile } = props; 
-  // const category = useSelector(cart.category);
 
-  let text = '';
-  let category_obj_all = [];
-  let category_obj = [];
-  let prod = [];
+  const category = useSelector(cart.category);
+  const products = useSelector(cards.products);  
+
+ const { arrowup } = images
  
-  switch ('Все') {
-    case 'all':
-      text = 'Все';
-      break;
-    case 'man':
-      text = 'Мужские';
-      break;
-    case 'woman':
-      text = 'Женские';
-      break;
-    case 'animals':
-      text = 'Животные';
-      break;
-    case 'family':
-      text = 'Семейные';
-      break;
-    case 'children':
-      text = 'Детские';
-      break; 
-    case 'forms':
-      text = 'Формы';
-      break; 
-    case 'mramor':
-      text = 'Мраморные';
-      break; 
-    case 'granit':
-      text = 'Гранитные';
-      break; 
-  
-    default:
-      break;
-  }
+  useEffect(() => {   
+    dispatch(setBotAppMod(true));   
+  },[]); 
+
+  // useEffect(() => {    
+  //   window.scrollTo({top:0,behavior:'smooth'});
+  //   const path = window.location.pathname;
+  //   const list = path.split('/');
+  //   const cookieName = list.filter(n => n).pop();
+    
+  //   const position = getCookie(cookieName);
  
-  // if(category === 'all') {
-  //   products.map((item,i) => { 
-  //     item.monuments.map((chank) => (category_obj_all.push(...chank.items)))  
-  //   });
+  // },[]); 
+     
+  const heightHeaderRef = useRef();
+  const scroll = useScroll(heightHeaderRef)
+ 
+  // window.onload = function () {
+  // if (document.cookie.includes(window.location.href)) {
+  //     if (document.cookie.match(/scrollTop=([^;]+)(;|$)/) != null) {
+  //         var arr = document.cookie.match(/scrollTop=([^;]+)(;|$)/);
+  //         document.documentElement.scrollTop = parseInt(arr[1]);
+  //         document.body.scrollTop = parseInt(arr[1]);
+  //     }
+  // }
   // }
  
-  // if(category === 'mramor' || category === 'granit' || category === 'poly') { 
-  //   if(category === 'granit') {
-  //     products.map((item,i) => { 
-  //       item.monuments.map((chank) => ( chank.material === 'granit' ? category_obj.push(...chank.items) : false )) 
-  //     });
-  //   } else if(category === 'mramor') {
-  //     products.map((item) => { 
-  //       item.monuments.map((chank) => ( chank.material === 'mramor' ? category_obj.push(...chank.items) : false )) 
-  //     });
-  //   } else if(category === 'poly') {
-  //     products.map((item) => { 
-  //       item.monuments.map((chank) => ( chank.material === 'poly' ? category_obj.push(...chank.items) : false )) 
-  //     });
-  //   }   
-  // } else {
-  //   products.map((item,i) => { 
-  //     if(item.category === category) {
-  //       item.monuments.map((chank) => ( category_obj.push(...chank.items) ))  
-  //     } 
-  //   });
-  // } 
+  const dispatch = useDispatch();
  
-    category_obj.length === 0 ? prod.push(...category_obj_all) : prod.push(...category_obj);
+  let prod = getCategoryChank(products, category);
 
+  function rowRenderer({
+    index,  
+    isScrolling,  
+    isVisible,  
+    key,  
+    parent, 
+    style, 
+  }) {
+
+    const product = prod.array[index];
+  
+    const content = <CardsMonument
+    onClick={(info) => {    
+      const newProducts = structuredClone(products);  
+      newProducts.map((item) => {   
+        item.monuments.map((category) => {  
+          category.items.map((card) => {   
+            if((info.category == category.subcategory) && (card.id == info.id_card)) { 
+                card.active = +info.active
+            }  
+          }) 
+        })  
+      }) 
+      dispatch(setCardsProducts(newProducts));   
+    }}
+    activeBtn={product.active}
+    key={index}
+    material={product.material}
+    category={category}
+    subcategory={product.category}
+    count={product.count}
+    img={product.img}
+    title={product.title}
+    description={product.description}
+    price={product.price}
+    id={product.id}
+    prop={product.prop}
+    info={product.info}
+    sizes={product.sizes} 
+  />; 
     return (
-      <div className="main_screen" > 
-        <div className='catalog_wrapper'>
+      <div key={key} style={style}>
+        {content} 
+      </div>
+    );
+  }
+ 
+    return (
+      <div className="catalog_screen" >  
+        <div className='catalog_wrapper' ref={heightHeaderRef}>
           {
             mobile ?
-            <>
-            <Title margin="110px 0px 0px 0px" size={33} text={`Категория: ${text}`} />
-            {/* <FilterItem mobile={mobile} customclass="titleFilterMobile" scategory={category} /> */}
-              <div className="mobileCardMonumentContainer">
+            <> 
+            <Answer title={'Категории'} category={ prod.text }>
               {
-                // prod.map((item, i) => (<CardsMonument key={i} category={category} count={item.count} img={item.img} title={item.title} description={item.description} price={item.price} id={item.id} prop={item.prop} info={item.info} />))
+  
+                [
+                  { 
+                    category: 'Мрамор',
+                    sub: [{ txt: 'Вертикальные', id: 'vmramor'},{txt: 'Горизонтальные', id: 'gmramor'}] 
+                  },
+                  { 
+                    category: 'Гранит', 
+                    sub: [{txt: 'Детские', id: 'children'},{txt: 'ЧПУ', id: 'chpu'},{txt: 'Вертикальные', id: 'vgranit'},{txt: 'Горизонтальные', id: 'ggranit'}] 
+                  }, 
+                  { 
+                    category: 'Акссесуары', 
+                    sub: [
+                      {txt: 'Шары', id: 'balls'},
+                      {txt: 'Заборы', id: 'fences'},  
+                      {txt: 'Лампы', id: 'lamps'}, 
+                      {txt: 'Вазы', id: 'vases'},
+                      {txt: 'Прочее', id: 'other'},
+                    ] 
+                  },
+                  { 
+                    category: 'Наши работы', 
+                    sub: [ 
+                      {txt: 'Посмотреть', id: 'works'},
+                    ] 
+                  },
+                  { 
+                    category: '3D - Макеты', 
+                    sub: [
+                      {txt: 'Посмотреть', id: '3d'},
+                    ] 
+                  }
+                ].map((item, i) => { 
+                  return <Answer key={i} title={item.category} category={''}> 
+                    {  
+                       [ item.sub.map((btn, bti) => { 
+                        return  <FilterButton 
+                            key={bti}
+                            id={btn.id}
+                            onClick={(id) => { 
+                              dispatch(setCategory(id))
+                            }}
+                            margin={'12px 0px 0px 0px'}
+                            text={btn.txt}
+                          /> 
+                        }),
+                        item.category == 'Акссесуары' && <Answer key={i} title={'Плитка'} category={''}> 
+                        {  
+                          [ 
+                            {txt: 'Гранитная', id: 'granitetille'},
+                            {txt: 'Керамогранитная', id: 'pavingtile'},  
+                            {txt: 'Тротуарная', id: 'porcelaintile'},  
+                          ].map((btn, bti) => { 
+                          return  <FilterButton 
+                              key={bti}
+                              id={btn.id}
+                              onClick={(id) => { 
+                                dispatch(setCategory(id))
+                              }}
+                              margin={'12px 0px 0px 0px'}
+                              text={btn.txt}
+                            /> 
+                          }) 
+                        }  
+                      </Answer>] 
+                    }  
+                  </Answer>
+                }) 
               } 
+              <FilterButton  
+                id={'all'}
+                onClick={(id) => {  
+                  dispatch(setCategory(id))
+                }}
+                width={200}
+                margin={'12px 0px 0px 0px'}
+                text={'Посмотреть все'}
+              />
+            </Answer>    
+              <div className="mobileCardMonumentContainer"> 
+                <WindowScroller> 
+                  {
+                    ({ height, isScrolling,registerChild, onChildScroll, scrollTop }) => (
+                      <div ref={registerChild}>
+                        <List
+                          autoHeight
+                          height={height}
+                          isScrolling={isScrolling}
+                          onScroll={onChildScroll}
+                          width={360} 
+                          scrollTop={scrollTop}
+                          rowCount={prod.array.length}
+                          rowHeight={630}
+                          rowRenderer={rowRenderer}
+                        />
+                      </div>
+                    )
+                  } 
+                </WindowScroller>  
+                <div className='roundBtnContainer' onClick={() => { 
+                  window.scrollTo({top:0,behavior:'smooth'});
+                }}>
+                  <img width={20} src={arrowup} />
+                </div>
               </div> 
             </>
             :
             <>
-              <Title margin="50px 0px 0px 0px" size={38} text={`Категория: ${text}`} />
+              {/* <Title margin="50px 0px 0px 0px" size={38} text={`Категория: ${prod.text}`} /> */}
               {/* <FilterItem mobile={mobile} customclass="titleFilter" category={category} /> */}
               <div className="cardMonumentContainer">
               {
@@ -108,6 +233,7 @@ function CatalogScreen(props) {
         </div>
       </div>
     );
+ 
 }
 
 export default CatalogScreen;

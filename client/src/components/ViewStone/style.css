@@ -35,6 +35,11 @@
   font-family: 'Roboto', sans-serif;
 }
 
+.swiper-pagination-bullet {
+  background: rgb(46 186 234);
+  opacity: 0.8;
+}
+
 .swiper-wrapper {
   height: auto !important;
 }

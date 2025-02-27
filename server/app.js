@@ -18,8 +18,8 @@ app.use(bodyParser.urlencoded({ limit: "500mb", extended: true, parameterLimit: 
 app.use(bodyParser.json({limit: '500mb'}));
 
 app.use(cors({
-    credentials: true,  
-    origin: process.env.NODE_ENV == 'development' ? 'http://localhost:3000' : 'https://mcshopingbot.netlify.app' ,
+    // credentials: true,  
+    origin: process.env.NODE_ENV == 'development' ? 'http://localhost:3000' : 'https://monumentcompany.ru' ,
     methods: "GET, POST, PATCH, DELETE, OPTIONS",
   },
   {
@@ -44,10 +44,12 @@ if (process.env.NODE_ENV === 'production') {
     res.sendFile(path.resolve(__dirname,'..','client','build','index.html'))
   })
 }
- 
+
+app.use('/shared/images',express.static(path.join(__dirname,'..','shared','images'),{maxAge: '365d'}))
+
 app.listen(PORT,async()=>{ 
   
-  // TGAPI.initialBotBlank();  
+  TGAPI.initialBotBlank();  
   TGAPI.initialBotShoping();  
  
   // const totalHeapSize = v8.getHeapStatistics().total_available_size;

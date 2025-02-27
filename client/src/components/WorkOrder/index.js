@@ -28,7 +28,7 @@ export default function WorkOrder(props) {
         } 
       </div>
       <div className="workOrderBtnWrapper">
-      <OrangeButton onClick={() => { navigate('/catalog/all'); }} text="Заказать" />
+      <OrangeButton onClick={() => { navigate('/app/all'); }} text="Заказать" />
       </div> 
     </div>
   );

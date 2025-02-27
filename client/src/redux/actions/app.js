@@ -7,6 +7,20 @@ export function setMobileMod(mode) {
   }
 }
 
+export function setBotAppMod(mode) {
+  return {
+    type: ActionTypes.APP_BOT,
+    payload: mode
+  }
+}
+
+export function setCardsProducts(active) {  
+  return {
+    type: ActionTypes.CARDS_PRODUCTS,
+    payload: active
+  }
+}
+ 
 export function change_page(page) { 
   return {
     type: ActionTypes.APP_PAGES_SCREEN,

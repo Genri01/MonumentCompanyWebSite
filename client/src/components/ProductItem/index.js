@@ -13,9 +13,9 @@ function ProductItem(props) {
           {
             mobile ?
             <>
-              <div onClick={() => {onClick()}} className='mobileItemTopContainer'>
+              {/* <div onClick={() => {onClick()}} className='mobileItemTopContainer'>
                 <img alt="photoc" className='mobileCrossItem' src={cross} />
-              </div>
+              </div> */}
                 <div className='mobileItemBottomContainer'>
                 <div className='mobileProductItemPhotoContainer'>
                 <img alt="photoc" className='mobilePhotoItem' src={photo} />
@@ -25,13 +25,13 @@ function ProductItem(props) {
                 </div>
                 <div className='mobileProductItemCountContainer'>
                 <div className='mobileCountItemContainer'>
-                <div onClick={(e) => { dispatch(decrimentBuy({ id,count: +count-1 }));e.preventDefault(); }} className='decrementCount'>
+                {/* <div onClick={(e) => { dispatch(decrimentBuy({ id,count: +count-1 }));e.preventDefault(); }} className='decrementCount'>
                 <img src={arrowl} alt="arrowl" width={25}  height={25} />
-                </div>
-                <input value={count} onChange={(e) => { dispatch(incrimentBuy({id,count: e.target.value})) }} className='resultCount' type='number' step="1" min="1" max="27" id="count_product" name="count_product" /> 
-                <div onClick={(e) => { dispatch(incrimentBuy({ id,count: +count+1 }));e.preventDefault(); }} className='incrementCount'>
+                </div> */}
+                {/* <input value={count} onChange={(e) => { dispatch(incrimentBuy({id,count: e.target.value})) }} className='resultCount' type='number' step="1" min="1" max="27" id="count_product" name="count_product" />  */}
+                {/* <div onClick={(e) => { dispatch(incrimentBuy({ id,count: +count+1 }));e.preventDefault(); }} className='incrementCount'>
                 <img src={arrowr} alt="arrowr" width={25}  height={25}/>
-                </div>
+                </div> */}
                 </div>
                 </div>
                 <div className='mobileProductItemPriceContainer'>

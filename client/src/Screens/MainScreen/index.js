@@ -12,6 +12,7 @@ import PlusBlock from '../../components/PlusBlock'
 import FilterItem from '../../components/FilterItem';
 import Title from '../../components/Title';  
 import Footer from '../../components/Footer';
+import { setBotAppMod } from '../../redux/actions/app'
 import { useDispatch } from 'react-redux';  
  
 function MainScreen(props) {
@@ -19,9 +20,9 @@ function MainScreen(props) {
   const { mobile } = props;
 
   useEffect(() => {
- 
+    dispatch(setBotAppMod(false)); 
   },[])
- 
+  
   const dispatch = useDispatch();
 
     return (

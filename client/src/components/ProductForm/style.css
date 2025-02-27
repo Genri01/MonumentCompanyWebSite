@@ -87,7 +87,7 @@
   display: flex;
   width: 100%; 
   align-items: center; 
-  border-top: 1px solid #ea402f; 
+  border-top: 1px solid rgb(211 241 255);
   flex-direction: column; 
 }
 
@@ -97,7 +97,7 @@
   height: 40px;
   align-items: center;
   justify-content: center;
-  border-top: 1px solid #ea402f40
+  border-top: 1px solid rgb(211 241 255);
 }
 
 .salesContainer {
@@ -106,7 +106,7 @@
   height: 40px;
   align-items: center;
   justify-content: center;
-  border-top: 1px solid #ea402f40
+  border-top: 1px solid rgb(47, 176, 234);
 }
 
 .priceContainer {
@@ -115,7 +115,7 @@
   height: 40px;
   align-items: center;
   justify-content: center;
-  border-top: 1px solid #ea402f40
+  border-top: 1px solid rgb(211 241 255)
 }
 
 .textTitleForm {

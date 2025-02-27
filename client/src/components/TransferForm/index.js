@@ -25,7 +25,7 @@ export default function TransferForm(props) {
     {
       name: "delivery",
       value: "maycop",
-      title: 'Cамовывоз с производства г. Майкоп Промышленная 54а',
+      title: 'Cамовывоз с производства. Адрес: посёлок Родники, улица Новая 12Б',
     },
     // {
     //   name: "delivery",

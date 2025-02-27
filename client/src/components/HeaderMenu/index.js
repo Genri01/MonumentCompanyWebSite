@@ -35,7 +35,7 @@ function HeaderMenu(props) {
     {
       title: 'Каталог',
       key:"all",
-      rout: '/catalog/all',
+      rout: '/app/all',
     },
     {
       title: 'Наши работы',

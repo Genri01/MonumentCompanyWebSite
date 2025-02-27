@@ -16,13 +16,13 @@ function Footer(props) {
           <div className="footer_logo_section">
             <YMaps>
                 <Map  className={`${mobile ? 'mobile-iframe' : 'iframe'}`} defaultState={{ center: [44.7350691, 39.9124768], zoom: 15 }}>
-                  <Placemark geometry={[44.7346193, 39.9148412]} /> ,
+                  <Placemark geometry={[44.734069, 39.917010]} /> ,
                   <ZoomControl />
                 </Map>
             </YMaps>
           </div>
           {/* <div className="footer_desription_section_left">
-          <Link   to={"/catalog/all"}><div className={`${mobile ? 'mobile-footer_txt' : 'footer_txt'}`} >Каталог</div></Link> 
+          <Link   to={"/app/all"}><div className={`${mobile ? 'mobile-footer_txt' : 'footer_txt'}`} >Каталог</div></Link> 
           <Link to={"/works/#works"}><div className={`${mobile ? 'mobile-footer_txt' : 'footer_txt'}`} >Наши работы</div></Link>
           <Link to={"/#feedback"}><div className={`${mobile ? 'mobile-footer_txt' : 'footer_txt'}`} >Отзывы</div></Link>
           </div>

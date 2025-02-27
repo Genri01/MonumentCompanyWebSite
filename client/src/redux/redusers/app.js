@@ -1,7 +1,8 @@
 import ActionTypes from '../constants'; 
  
 const initialState = {
-  mobile: false, 
+  mobile: true, 
+  app: true, 
 };
 
 export default function app(state = initialState, { type, payload }) { 
@@ -10,6 +11,11 @@ export default function app(state = initialState, { type, payload }) {
       return {
         ...state,
         mobile: payload
+      };   
+    case ActionTypes.APP_BOT:
+      return {
+        ...state,
+        app: payload
       };   
     default:
       return state;

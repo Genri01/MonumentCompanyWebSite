@@ -19,7 +19,7 @@ export default function LocationForm(props) {
       <div className='titleLocationContainer'>
         <div className='titlelocation textTitleForm'>Адрес доставки (Установки)</div>
       </div>
-      <div className='locationContainer' style={{ borderTop: '1px solid #ea402f' }}>
+      <div className='locationContainer' style={{ borderTop: '1px solid rgb(47, 176, 234)' }}>
         <div className='locationForm'>
    <div style={{width:'70px',position:'relative'}}>Регион<div className='requared'>*</div></div><select value={addres_region} onChange={(e) => {dispatch(setRegion(e.target.value))}} className="locationInput" name="shipping_address[zone_id]" id="shipping_address_zone_id" data-theme="bootstrap" data-onchange="reloadAll">
                   <option value=""> --- Выбрать --- </option>

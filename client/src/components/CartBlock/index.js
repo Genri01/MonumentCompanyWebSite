@@ -59,23 +59,21 @@ export default function CartBlock(props) {
   const delivery_method = useSelector(cart.delivery_method);
   const pay_method = useSelector(cart.pay_method); 
   const buy = useSelector(cart.buy);  
-  const width = useSelector(cart.width);
-  const material = useSelector(cart.material);
+  // const width = useSelector(cart.width);
+  // const material = useSelector(cart.material);
   const fileName = useSelector(cart.fileName);
   const msg_main_popup = useSelector(cart.msg_main_popup); 
-  const widthArr = ["90x180x10","90x180x15","120x180x10","120x180x15","150x180x10","150x180x15","180x180x10","180x180x15","210x240x10","210x240x15","240x240x10","240x240x15","240x420x10","240x420x15"];
-  const materialArr = ['Тротуарная','Керамогранитная','Гранитная'];
-  
-
+  // const widthArr = ["90x180x10","90x180x15","120x180x10","120x180x15","150x180x10","150x180x15","180x180x10","180x180x15","210x240x10","210x240x15","240x240x10","240x240x15","240x420x10","240x420x15"];
+  // const materialArr = ['Тротуарная','Керамогранитная','Гранитная'];
+   
   let sumPrice = 0;
   let description = "";
-
-  buy.map((item,i) => { 
-    sumPrice += Number(item.price) * item.count ; 
-    description += `Название: ${item.title} ID: ${item.id},`
-    return false;
-  });
  
+  // buy.map((item,i) => {  
+  //   sumPrice += Number(+`${item.price.split(' ')[0]}${item.price.split(' ')[1]}`) * item.count ; 
+  //   description += `Название: ${item.title} ID: ${item.id},`
+  //   return false;
+  // });
  
   return (
     <div  style={ mobile ? { padding: '0px 10px' } : {} } className="cartBlockWrapper">
@@ -89,29 +87,32 @@ export default function CartBlock(props) {
           <LocationForm />
           <TransferForm />
           <PayForm />
-          <div className='resultMssg'>{`${msg_main_popup}`}</div>
+          {
+            msg_main_popup ? <div className='resultMssg'>{`${msg_main_popup}`}</div> : <></>
+          }
+          
           <div className='btnWrapperCart'>
-           {      isVisibleViget ? 
+           { isVisibleViget ? 
                 <TinkoffView amount={(sumPrice/100) * 20} description={description} /> 
                 : 
- <OrangeButton 
- margin="0px 0px 3px 0px" 
- disabled={ isToggleOn ? true :
-   buy.length === 0 ? true : 
-  //  pay_method === '' ? true : 
-  //  delivery_method === '' ? true : 
-   addres_region === '' ? true : 
-  //  addres_index === '' ? true : 
-  //  addres === '' ? true : 
-  //  addres_city === '' ? true : 
-  //  byer_email === '' ? true : 
-   byer_tel === '' ? true : 
-   byer_initial === '' ? true  : false 
-   // byer_initial_dead === '' ? true 
-  //  byer_date_birthday === '' ? true : 
-  //  byer_date_dead === '' ? true 
+              <OrangeButton 
+              margin="0px 0px 3px 0px" 
+              disabled={ isToggleOn ? true :
+                buy.length === 0 ? true : 
+                //  pay_method === '' ? true : 
+                //  delivery_method === '' ? true : 
+                addres_region === '' ? true : 
+                //  addres_index === '' ? true : 
+                //  addres === '' ? true : 
+                //  addres_city === '' ? true : 
+                //  byer_email === '' ? true : 
+                byer_tel === '' ? true : 
+                byer_initial === '' ? true  : false 
+                // byer_initial_dead === '' ? true 
+                //  byer_date_birthday === '' ? true : 
+                //  byer_date_dead === '' ? true 
   
- } 
+            } 
               onClick={ async () => {  
                 setIstoogle(true);    
 
@@ -137,8 +138,8 @@ export default function CartBlock(props) {
                       delivery_method,
                       pay_method, 
                       buy, 
-                      width: widthArr[width],
-                      material: materialArr[material],
+                      // width: widthArr[width],
+                      // material: materialArr[material],
                       fileName,
                       testImage:reader.result.replace(/^data:.+;base64,/, '')
                     },dispatch);  
@@ -161,14 +162,36 @@ export default function CartBlock(props) {
                     delivery_method,
                     pay_method, 
                     buy, 
-                    width: widthArr[width],
-                    material: materialArr[material],
+                    // width: widthArr[width],
+                    // material: materialArr[material],
                     fileName,
                     testImage:undefined
                   },dispatch);  
                 } 
-    		setIstoogle(false); 
-                setIsVisibleViget(statusEmail)  
+    		        setIstoogle(statusEmail); 
+                setTimeout(() => {
+                  dispatch(setAddres(''));
+                  dispatch(setBirthdayDate(''));
+                  dispatch(setCity(''));
+                  dispatch(setComent(''));
+                  dispatch(setDeadDate(''));
+                  dispatch(setEmail(''));
+                  dispatch(setDeliveryMethod('transitandinstall'));
+                  dispatch(setFile([])); 
+                  dispatch(setIndex(''));
+                  dispatch(setInitial(''));
+                  dispatch(setInitialDead(''));
+                  dispatch(setInsert({}));
+                  dispatch(setInstall(false));
+                  dispatch(setPayMethod('nal'));
+                  dispatch(setRegion(''));
+                  dispatch(setTel(''));
+                  dispatch(setPopupMainMsg(''));
+                  dispatch(setBuy([]));
+                  dispatch(clearBuy());
+                  navigate('/app/all');
+                }, 3000);
+                // setIsVisibleVite(statusEmail)  
             }} 
             text="Оформить" />
 	}            
@@ -194,8 +217,8 @@ export default function CartBlock(props) {
                 dispatch(setPopupMainMsg(''));
                 dispatch(setBuy([]));
                 dispatch(clearBuy());
-                navigate('/');
-                localStorage.setItem('page','main');
+                navigate('/app/all');
+                // localStorage.setItem('page','main');
               }}
               text="Отменить"
             />
@@ -263,8 +286,8 @@ export default function CartBlock(props) {
                       delivery_method,
                       pay_method, 
                       buy, 
-                      width: widthArr[width],
-                      material: materialArr[material],
+                      // width: widthArr[width],
+                      // material: materialArr[material],
                       fileName, 
                     },dispatch);  
 
