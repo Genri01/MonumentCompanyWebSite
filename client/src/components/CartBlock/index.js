@@ -227,11 +227,11 @@ export default function CartBlock(props) {
         </> :
         <>
           <div className='productWrapper'>
-           <ProductForm />
+          <ProductForm mobile={mobile} />
           </div>
           <div className='infoWrapper'>
             <div className='infoLeftWrapper'>
-              <BuyerForm />
+            <BuyerForm mobile={mobile} />
               <ComentForm />
             </div>
             <div className='infoRightWrapper'>
@@ -240,10 +240,9 @@ export default function CartBlock(props) {
               <PayForm />
             </div>
           </div>
-          <div className='resultMssg'>{`${msg_main_popup}`}</div>
           {
-              isVisibleViget ?  <div className='warningpay'>Для бронирования заказа, необходимо внести предоплату!</div> : <></>
-          } 
+            msg_main_popup ? <div className='resultMssg'>{`${msg_main_popup}`}</div> : <></>
+          }
           <div className='btnWrapperCart'> 
             { 
               isVisibleViget ? 
@@ -267,37 +266,90 @@ export default function CartBlock(props) {
   //  byer_date_dead === '' ? true 
   
  } 
-                  onClick={ async () => {  
-                    setIstoogle(true);    
-                    let statusEmail = await sendInfoServer({ 
-                      byer_initial_dead, 
-                      byer_date_birthday, 
-                      byer_date_dead,
-                      byer_file, 
-                      install,
-                      byer_initial,
-                      byer_tel,
-                      coment, 
-                      byer_email,
-                      addres_city,
-                      addres,
-                      addres_index,
-                      addres_region,
-                      delivery_method,
-                      pay_method, 
-                      buy, 
-                      // width: widthArr[width],
-                      // material: materialArr[material],
-                      fileName, 
-                    },dispatch);  
+ onClick={ async () => {  
+  setIstoogle(true);    
 
-                    setIstoogle(false); 
-                    setIsVisibleViget(statusEmail)  
-                  }} 
-                text="Оформить" /> 
+  const reader = new FileReader(); 
+  var statusEmail = false
+  if(byer_file.name !== undefined) { 
+    reader.readAsDataURL(byer_file); 
+    reader.onloadend = async function () {   
+        statusEmail = await sendInfoServer({ 
+        byer_initial_dead, 
+        byer_date_birthday, 
+        byer_date_dead,
+        byer_file, 
+        install,
+        byer_initial,
+        byer_tel,
+        coment, 
+        byer_email,
+        addres_city,
+        addres,
+        addres_index,
+        addres_region,
+        delivery_method,
+        pay_method, 
+        buy, 
+        // width: widthArr[width],
+        // material: materialArr[material],
+        fileName,
+        testImage:reader.result.replace(/^data:.+;base64,/, '')
+      },dispatch);  
+    }; 
+  } else {
+      statusEmail = await sendInfoServer({ 
+      byer_initial_dead, 
+      byer_date_birthday, 
+      byer_date_dead,
+      byer_file, 
+      install,
+      byer_initial,
+      byer_tel,
+      coment, 
+      byer_email,
+      addres_city,
+      addres,
+      addres_index,
+      addres_region,
+      delivery_method,
+      pay_method, 
+      buy, 
+      // width: widthArr[width],
+      // material: materialArr[material],
+      fileName,
+      testImage:undefined
+    },dispatch);  
+  } 
+  setIstoogle(statusEmail); 
+  setTimeout(() => {
+    dispatch(setAddres(''));
+    dispatch(setBirthdayDate(''));
+    dispatch(setCity(''));
+    dispatch(setComent(''));
+    dispatch(setDeadDate(''));
+    dispatch(setEmail(''));
+    dispatch(setDeliveryMethod('transitandinstall'));
+    dispatch(setFile([])); 
+    dispatch(setIndex(''));
+    dispatch(setInitial(''));
+    dispatch(setInitialDead(''));
+    dispatch(setInsert({}));
+    dispatch(setInstall(false));
+    dispatch(setPayMethod('nal'));
+    dispatch(setRegion(''));
+    dispatch(setTel(''));
+    dispatch(setPopupMainMsg(''));
+    dispatch(setBuy([]));
+    dispatch(clearBuy());
+    navigate('/app/all');
+  }, 3000);
+  // setIsVisibleVite(statusEmail)  
+}} 
+text="Оформить" />
             }
  
-            <OrangeButton 
+ <OrangeButton 
               margin="0px 0px 3px 30px"
               onClick={() => {
                 dispatch(setAddres(''));
@@ -319,8 +371,8 @@ export default function CartBlock(props) {
                 dispatch(setPopupMainMsg(''));
                 dispatch(setBuy([]));
                 dispatch(clearBuy());
-                navigate('/');
-                localStorage.setItem('page','main');
+                navigate('/app/all');
+                // localStorage.setItem('page','main');
               }}
               text="Отменить"
             />

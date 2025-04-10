@@ -13,9 +13,8 @@ export default function FeedbackBlock(props) {
   return (
     <div id={id} className="feedbackWrapper"> 
       <Title size={20} text="Пример установки Мемориала" margin="0px 0px 50px 0px" />
-      <div className='mobileFeedbackItemContainer'> 
-        <div className='blockgif'></div>
-        <img width='100%' src={ustanovka} alt="visa" />
+      <div className='mobileFeedbackItemContainer'>  
+        <img style={{ marginBottom: `${mobile ? '0' : '60px'}` }} width={`${mobile ? '100%' : '40%'}`} src={ustanovka} alt="visa" />
       </div> 
     </div>
   );

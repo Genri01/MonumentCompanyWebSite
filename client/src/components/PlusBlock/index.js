@@ -17,7 +17,7 @@ export default function PlusBlock(props) {
         <div style={{borderColor:'white',zIndex: 9}} className="underlineTextMonument"></div>
         <div style={{zIndex: 9}} className="mobilePlusRightBlock">
           {
-            about_plus.map((item,i) => (<div key={i+'1p'} className="mobilePlusItem">{ item.plus }</div>))
+            about_plus.map((item,i) => (<div key={i+'1p'} className={`${mobile ? "mobilePlusItem" : "plusItem"}`}>{ item.plus }</div>))
           }
         </div>  
     </div>

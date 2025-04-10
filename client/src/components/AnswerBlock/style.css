@@ -67,7 +67,7 @@
 }
 .blocked{
   display: flex;
-  width: 40%;
+  width: 150px;
   height: 25px;
   align-items: center;
   justify-content: center;

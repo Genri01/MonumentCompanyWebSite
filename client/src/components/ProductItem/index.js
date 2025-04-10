@@ -43,9 +43,9 @@ function ProductItem(props) {
               </div>
             </> :
             <>
-               <div onClick={() => {onClick()}} className='itemTopContainer'>
+               {/* <div onClick={() => {onClick()}} className='itemTopContainer'>
                 <img alt="photoc" className='mobileCrossItem' src={cross} />
-              </div>
+              </div> */}
               <div className='itemBottomContainer'> 
                 <div className='productItemPhotoContainer'>
                   <img alt="photoc" className='photoItem' src={photo} />
@@ -55,13 +55,13 @@ function ProductItem(props) {
                 </div>
                 <div className='productItemCountContainer'>
                 <div className='countItemContainer'>
-                <div onClick={(e) => { dispatch(decrimentBuy({ id,count: +count-1 }));e.preventDefault(); }} className='decrementCount'>
+                {/* <div onClick={(e) => { dispatch(decrimentBuy({ id,count: +count-1 }));e.preventDefault(); }} className='decrementCount'>
                 <img src={arrowl} alt="arrowl" width={25}  height={25} />
                 </div>
                 <input value={count} onChange={(e) => { dispatch(incrimentBuy({id,count: e.target.value})) }} className='resultCount' type='number' step="1" min="0" max="27" id="count_product" name="count_product" /> 
                 <div onClick={(e) => { dispatch(incrimentBuy({ id,count: +count+1 }));e.preventDefault(); }} className='incrementCount'>
                 <img src={arrowr} alt="arrowr" width={25}  height={25}/>
-                </div>
+                </div> */}
                 </div>
                 </div>  
                 <div className='productItemPriceContainer'>

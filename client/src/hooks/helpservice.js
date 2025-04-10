@@ -144,8 +144,7 @@ export const getCategoryChank = (cards, category) => {
  
 // returns the cookie with the given name,
 // or undefined if not found
-export function getCookie(name) {
-  console.log(name);
+export function getCookie(name) { 
   let matches = document.cookie.match(new RegExp(
     "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
   ));

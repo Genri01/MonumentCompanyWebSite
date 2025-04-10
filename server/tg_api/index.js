@@ -1967,8 +1967,7 @@
 
        // ctx.replyWithPhoto({ source: products[0].img }); // отправиьт фото в чат
 
-       await deleteMessage(ctx, [msgId]);
-
+       await deleteMessage(ctx, [msgId]); 
        if (data == 'Несколько' && questionId == 0) { // работает
          ctx.session.individualQuestions = true;
          ctx.session.answer[0].push(data);
@@ -2006,6 +2005,7 @@
        }
 
        if (questionId > 6 && questionId < 12) {
+ 
          await checkSideQuestion(ctx, data);
          ctx.session.questionId--;
          await registrationAnswer(ctx, {
@@ -2013,6 +2013,7 @@
            description: ''
          });
          if (data == "Нет") ctx.session.questionId++;
+      
        }
 
        if (questionId == 15) {
@@ -2028,6 +2029,7 @@
 
          if (questionId == 4) {
            let subcat = getCategoryBtnBot(products);
+        
            subcat.map((item) => {
              if (item.text == data) {
                let half = Math.ceil(item.subcategory.length / 2);
@@ -2168,7 +2170,7 @@
          }
 
          if (questionId == 5 && sideQuestion) { // Первый вопрос про католог
-
+ 
            await addIdMsg(ctx, msgId);
            await minorDeletedMsg(ctx);
  
@@ -2177,7 +2179,7 @@
            if(monument != false) {
             
             // ctx.replyWithPhoto({ source: monument.img }); // отправиьт фото в чат
-     
+            
             fs.copyFileSync(path.resolve(__dirname, monument.img),path.join(__dirname, `../photos/monument_${id}.jpg`));
  
             await registrationAnswer(ctx);
@@ -2223,17 +2225,42 @@
           //  ctx.session.answer[0][questionId + 1].description = text; // плюс один но это из-за доп 1 в массиве на ответ сколько умерших    
  
            // if(ctx.session.answer[0].length == 9) {
-           if (ctx.session.answer[0][10] ?.need == "Да" && questionId == 9) {
-             // console.log('ctx.session.answer[0][9]?.need == "Да"')//5 
-             ctx.session.answer[0].push({
-               need: "Нет",
-               description: ''
-             })
-             ctx.session.questionId = 11;
-             ctx.session.sideQuestion = false;
-           } else {
-             ctx.session.questionId++;
-           }
+ 
+            if(ctx.session.answer[0][3] == "Индивидуальное") { 
+              if (ctx.session.answer[0][10]?.need == "Да" && questionId == 9) {  
+                ctx.session.answer[0].push({
+                  need: "Нет",
+                  description: ''
+                })
+                ctx.session.questionId = 11;
+                ctx.session.sideQuestion = false;
+              } else {
+                ctx.session.questionId++;
+              } 
+
+              if (ctx.session.answer[0][11] ?.need == "Да" && questionId == 10) { //открытый по Индивидуальное .12 
+                ctx.session.questions[0][13].question = "Сумма доставки"
+              }
+
+            } else { 
+              
+              if (ctx.session.answer[0][11]?.need == "Да" && questionId == 9) {  
+                ctx.session.answer[0].push({
+                  need: "Нет",
+                  description: ''
+                })
+                ctx.session.questionId = 11;
+                ctx.session.sideQuestion = false;
+              } else {
+                ctx.session.questionId++;
+              } 
+
+              if (ctx.session.answer[0][12] ?.need == "Да" && questionId == 10) { //открытый по каталогу .12 
+                ctx.session.questions[0][13].question = "Сумма доставки"
+              }
+
+            }
+ 
            // } 
 
            // if(ctx.session.answer[0].length == 10) {
@@ -2246,61 +2273,80 @@
            //     ctx.session.questionId += 2;   
            //   } 
            // }
- 
-
-           if(ctx.session.answer[0][3] == "Индивидуальное") {
-            if (ctx.session.answer[0][11] ?.need == "Да" && questionId == 10) { //открытый по каталогу .12 
-              ctx.session.questions[0][13].question = "Сумма доставки"
-            }
-           } else {
-            if (ctx.session.answer[0][12] ?.need == "Да" && questionId == 10) { //открытый по каталогу .12 
-              ctx.session.questions[0][13].question = "Сумма доставки"
-            }
-           }
-
-
+  
            await minorDeletedMsg(ctx);
            await questionNextAfterUP(ctx);
            // await removeIdMsg(ctx, msgIds[msgIds.length - 1]);
          }
 
+ 
+        if(ctx.session.answer[0][3] == "Индивидуальное") { 
+          if (questionId > 10 && questionId < 14) { // работае 
+             
+            let regexp = /^\d{1,8}$/g;
+            await addIdMsg(ctx, msgId);
 
-     
-         if (questionId > 10 && questionId < 14) { // работае
+            if (regexp.test(text)) {
 
-  
-
-           let regexp = /^\d{1,8}$/g;
-           await addIdMsg(ctx, msgId);
-
-           if (regexp.test(text)) {
-
-             await minorDeletedMsg(ctx);
-             await registrationAnswer(ctx);
+              await minorDeletedMsg(ctx);
+              await registrationAnswer(ctx);
         
-             if (questionId == 10) {
-               if (ctx.session.answer[0][9] ?.need == "Нет" && ctx.session.answer[0][10] ?.need == "Нет") {
-                 // ctx.session.answer[0].push("");  
-                 ctx.session.questionId = 12;
-               }
-             }
+              if (questionId == 9) { 
+                if (ctx.session.answer[0][9] ?.need == "Нет" && ctx.session.answer[0][10] ?.need == "Нет") {
+                  // ctx.session.answer[0].push("");  
+                  ctx.session.questionId = 11;
+                }
+              }
 
-             if (questionId == 12) {
+              if (questionId == 12) {
+              if (ctx.session.answer[0][10] ?.need == "Нет" && ctx.session.answer[0][11] ?.need == "Нет") { // не установка и не доставка 
+                ctx.session.answer[0].push("");  
+                ctx.session.questionId = 14;
+              }
+              } 
+
+              await questionNext(ctx);
+
+            } else {
+              if (text.length > 8) {
+                await errorMsgEnter(ctx, "Ну уж не преувеличивай А! Столько точно не дадут)))))");
+              } else await errorMsgEnter(ctx, "На клавиатуре есть цифры! Используй их!");
+            }
+          }  
+        } else { 
+          if (questionId > 10 && questionId < 14) { // работае 
+            let regexp = /^\d{1,8}$/g;
+            await addIdMsg(ctx, msgId);
+
+            if (regexp.test(text)) {
+
+              await minorDeletedMsg(ctx);
+              await registrationAnswer(ctx);
+        
+              if (questionId == 10) { 
+                if (ctx.session.answer[0][9] ?.need == "Нет" && ctx.session.answer[0][10] ?.need == "Нет") {
+                  // ctx.session.answer[0].push("");  
+                  ctx.session.questionId = 12;
+                }
+              }
+
+              if (questionId == 12) {
               if (ctx.session.answer[0][11] ?.need == "Нет" && ctx.session.answer[0][12] ?.need == "Нет") { // не установка и не доставка 
                 ctx.session.answer[0].push("");  
                 ctx.session.questionId = 14;
               }
-             } 
+              } 
 
-             await questionNext(ctx);
+              await questionNext(ctx);
 
-           } else {
-             if (text.length > 8) {
-               await errorMsgEnter(ctx, "Ну уж не преувеличивай А! Столько точно не дадут)))))");
-             } else await errorMsgEnter(ctx, "На клавиатуре есть цифры! Используй их!");
-           }
-         }
-
+            } else {
+              if (text.length > 8) {
+                await errorMsgEnter(ctx, "Ну уж не преувеличивай А! Столько точно не дадут)))))");
+              } else await errorMsgEnter(ctx, "На клавиатуре есть цифры! Используй их!");
+            }
+          } 
+        }
+ 
          if (questionId == 15) { // работает
 
            let regexp = /^((8|\+375|\+7|\+996|\+998)[\- ]?)?\(?\d{3,5}\)?[\- ]?\d{1}[\- ]?\d{1}[\- ]?\d{1}[\- ]?\d{1}[\- ]?\d{1}(([\- ]?\d{1})?[\- ]?\d{1})?$/g;

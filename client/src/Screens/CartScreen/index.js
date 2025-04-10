@@ -41,49 +41,38 @@ function CartScreen(props) {
       window.scrollTo({top:0,behavior:'smooth'});
     },[]); 
     return (
-      <div className="cart_screen" > 
-        {
-          mobile ? 
-          <>
-            <div className="cross">
-              <Link
-              onClick={() => {
-                dispatch(setAddres(''));
-                dispatch(setBirthdayDate(''));
-                dispatch(setCity(''));
-                dispatch(setComent(''));
-                dispatch(setDeadDate(''));
-                dispatch(setEmail(''));
-                dispatch(setDeliveryMethod(''));
-                dispatch(setFile([])); 
-                dispatch(setIndex(''));
-                dispatch(setInitial(''));
-                dispatch(setInitialDead(''));
-                dispatch(setInsert({}));
-                dispatch(setInstall(false));
-                dispatch(setPayMethod(''));
-                dispatch(setRegion(''));
-                dispatch(setTel(''));
-                dispatch(setPopupMainMsg(''));
-                dispatch(setBuy([]));
-                dispatch(clearBuy());
-                navigate('/app/all');
-                // localStorage.setItem('page','main');
-              }}
-              style={{ textDecoration: 'none' }} to={`${procuct_link}`}><img width={35} height={35} className="imageShopBlock" src={crossp} alt="cross" /></Link>
-            </div>
-            <div className='backgroundCartProduct'>
-              <Title size={25} text="Оформление заказа" margin="30px 0px 10px 0px" />
-            </div>
-            <CartBlock mobile={mobile} />
-          </> :
-          <>
-            <div className='backgroundCartProduct'>
-             <Title text="Оформление заказа" margin="250px 0px 10px 0px" />
-            </div>
-            <CartBlock />
-          </>
-        }
+      <div className="cart_screen" >  
+        <div className="cross">
+          <Link
+          onClick={() => {
+            dispatch(setAddres(''));
+            dispatch(setBirthdayDate(''));
+            dispatch(setCity(''));
+            dispatch(setComent(''));
+            dispatch(setDeadDate(''));
+            dispatch(setEmail(''));
+            dispatch(setDeliveryMethod(''));
+            dispatch(setFile([])); 
+            dispatch(setIndex(''));
+            dispatch(setInitial(''));
+            dispatch(setInitialDead(''));
+            dispatch(setInsert({}));
+            dispatch(setInstall(false));
+            dispatch(setPayMethod(''));
+            dispatch(setRegion(''));
+            dispatch(setTel(''));
+            dispatch(setPopupMainMsg(''));
+            dispatch(setBuy([]));
+            dispatch(clearBuy());
+            navigate('/app/all');
+            // localStorage.setItem('page','main');
+          }}
+          style={{ textDecoration: 'none' }} to={`${procuct_link}`}><img width={35} height={35} className="imageShopBlock" src={crossp} alt="cross" /></Link>
+        </div>
+        <div className='backgroundCartProduct'>
+          <Title size={25} text="Оформление заказа" margin="30px 0px 10px 0px" />
+        </div>
+        <CartBlock mobile={mobile} /> 
       </div>
     );
 }

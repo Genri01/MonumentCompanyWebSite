@@ -64,6 +64,16 @@
   width: 90%; 
 }
 
+.slider { 
+  width: 40% !important; 
+  height: auto !important; 
+  margin: 0px 0px 70px 0px;
+}
+
+.slider .swiper_container {
+  width: 60%; 
+}
+
 @media (width <= 1090px ) { 
   .mobileArrow .wrapperArrow {
     display: flex;

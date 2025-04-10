@@ -18,8 +18,7 @@ export default function UploadFiles(props) {
   },[])
  
  
-  function selectFile(event) {
-    console.log(event.target.files)
+  function selectFile(event) { 
     setProgressInfos([]);
     setSelectedFiles(event.target.files) 
   }
@@ -76,7 +75,7 @@ export default function UploadFiles(props) {
       upload(i, selectedFiles[i]);
     } 
   }
-console.log(progressInfos[0])
+ 
   return (
     <>
       <div style={{width: '100px', height: '50px'}}>{'selectedFiles'}</div>

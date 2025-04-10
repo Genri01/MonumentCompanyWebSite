@@ -72,8 +72,7 @@
 
 .resultMssg {
   text-align: center;
-  color: rgb(255, 255, 255);
-  background-color: #03b2ee;
+  color: rgb(255, 255, 255); 
   padding: 10px;
   font-weight: 700;
 }

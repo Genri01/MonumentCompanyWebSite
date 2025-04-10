@@ -22,7 +22,7 @@
     "react-virtualized": "^9.22.5",
     "react-yandex-maps": "^4.6.0",
     "redux": "^4.1.2",
-    "redux-devtools-extension": "^2.13.9",
+    "redux-devtools-extension": "^2.13.9", 
     "redux-thunk": "^2.4.1",
     "swiper": "^11.1.14",
     "web-vitals": "^2.1.4"
@@ -35,7 +35,7 @@
   },
   "eslintConfig": {
     "extends": [
-      "react-app",
+      "react-app", 
       "react-app/jest"
     ]
   },  

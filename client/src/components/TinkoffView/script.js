@@ -2,7 +2,7 @@ const TPF = document.getElementById("payform-tinkoff");
 
 TPF.addEventListener("submit", function (e) {
     e.preventDefault();
-    console.log('!@#!@#@#!@@#!@#@')
+ 
     const {description, amount, email, phone, receipt} = TPF;
 
     if (receipt) {

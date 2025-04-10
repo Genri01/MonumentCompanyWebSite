@@ -4,16 +4,16 @@ import SizeButton from '../SizeButton';
 import { Link, useNavigate } from 'react-router-dom'; 
 import { useDispatch, useSelector } from 'react-redux'; 
 import { setInsert , linkpage} from '../../redux/actions/cart';  
-
+import images from '../../assets/images'
 import './style.css'
 
 export default function CardsMonument(props) {
-  const { activeBtn, subcategory, onClick, img, title, description, price, id, info, prop, count, category, sizes } = props; 
-
+  const { activeBtn, subcategory, onClick, img, title, description, price, id, info, prop, count, category, sizes,mobile } = props; 
+  const {test} = images
   const dispatch = useDispatch();  
   
   return (
-    <div className="CardsItemWrapper">
+    <div className={`${mobile ? "mobileCardsItemWrapper" : "CardsItemWrapper"}`}>
       <div className="CardsItemTop"> 
         <img src={img} loading="lazy" alt='statuy' width='80%' height='100%' />
       </div>
@@ -59,7 +59,7 @@ export default function CardsMonument(props) {
           </Link> </> 
          }
       </div>
-    </div>
+    </div> 
   ); 
 }
  

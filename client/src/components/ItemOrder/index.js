@@ -6,7 +6,7 @@ function ItemOrder(props) {
     return (
       <div style={{backgroundImage: `url(${back})`}} className={`${mobile ? 'mobileWorkOrderItem' : 'workOrderItem'}`}> 
         <div className='workOrderItemBlack'></div> 
-        <div className='workOrderItemTitle'>{title}</div> 
+        <div className={`${mobile ? 'mobileWorkOrderItemTitle' : 'workOrderItemTitle'}`}>{title}</div> 
       </div>
     );
 }

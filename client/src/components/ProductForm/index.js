@@ -95,25 +95,26 @@ export default function ProductForm(props) {
         <>
           <div className='titleProductContainer'>
           <div className='photoProduct textTitleForm'>Фото</div>
-          <div className='nameProduct textTitleForm'>Наименование товара</div>
-          <div className='countProduct textTitleForm'>Количество</div>
+          <div className='nameProduct textTitleForm'>Наименование</div>
+          {/* <div className='countProduct textTitleForm'>Количество</div> */}
           <div className='priceProduct textTitleForm'>Цена</div>
-          <div className='allpriceProduct textTitleForm'>Итогова Цена</div>
+          <div className='allpriceProduct textTitleForm'>Итого</div>
           </div>
           <div className='productContainer'>
             { 
-              buy.map((item,i) => (<ProductItem key={i} onClick={()=>{dispatch(setDelBuy(`${item.id}`))}} id={item.id} mobile={mobile} photo={item.img} name={item.title} count={item.count} price={item.price} /> ))
+              buy.map((item,i) => (<ProductItem key={i} onClick={()=>{dispatch(setDelBuy(`${item.id}`))}} id={item.id} mobile={mobile} photo={item.img} name={item.title} count={item.count} price={Number(+`${item.price.split(' ')[0]}${item.price.split(' ')[1]}`)} /> ))
             }
-          </div>
-          <div className='transportContainer'>
-            <div className='productFormTitle'>Доставка транспортной кампанией (оплачивается заказчиком и расчитывается индивидуально)</div>
-            {/* <div className='productFormPrice'>{ buy.length !== 0 ? priceDelivery : 0 }</div> */}
           </div>
           <div className='salesContainer'>
             <div className='productFormTitle'>Предварительная стоимость: </div>
             <div className='productFormPrice'>{ sumPrice }</div>
           </div>
-          <div className='salesContainer'> 
+          <div className='transportContainer'>
+            <div className='productFormTitle'>Доставка транспортной кампанией (оплачивается заказчиком и расчитывается индивидуально)</div>
+            {/* <div className='productFormPrice'>{ buy.length !== 0 ? priceDelivery : 0 }</div> */}
+          </div>
+      
+          {/* <div className='salesContainer'> 
             <div className='productFormTitle'>Параметры: </div>
               <select value={width} onChange={(e) => {dispatch(setWidth(+e.target.value))}} className="locationInputWidth" name="width" id="width" data-theme="bootstrap" data-onchange="reloadAll">
                 <option value={0}> --- Выбрать --- </option>
@@ -132,8 +133,8 @@ export default function ProductForm(props) {
                 <option value={13}>240x420x10</option>
                 <option value={14}>240x420x15</option>
               </select>  
-          </div>
-          <div className='salesContainer'> 
+          </div> */}
+          {/* <div className='salesContainer'> 
             <div className='productFormTitle'>Виды плитки: </div>
               <select value={material} onChange={(e) => {dispatch(setMaterial(+e.target.value))}} className="locationInputWidth" name="material" id="material" data-theme="bootstrap" data-onchange="reloadAll">
                 <option value={0}>Тротуарная</option>
@@ -141,7 +142,7 @@ export default function ProductForm(props) {
                 <option value={2}>Гранитная</option> 
               </select> 
             <div className='productFormPriceWidth'>{ arrayMaterial[width][material] }</div>
-          </div>
+          </div> */}
           <div className='priceContainer'>
             <div className='productFormTitle' style={{fontWeight: 'bold'}}>Итого:  </div>
             <div className='productFormPrice'>{ (buy.length !== 0 ? sumPrice : 0)}</div>

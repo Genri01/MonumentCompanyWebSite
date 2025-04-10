@@ -97,6 +97,7 @@ function CatalogScreen(props) {
     prop={product.prop}
     info={product.info}
     sizes={product.sizes} 
+    mobile={mobile} 
   />; 
     return (
       <div key={key} style={style}>
@@ -107,10 +108,7 @@ function CatalogScreen(props) {
  
     return (
       <div className="catalog_screen" >  
-        <div className='catalog_wrapper' ref={heightHeaderRef}>
-          {
-            mobile ?
-            <> 
+        <div className='catalog_wrapper' ref={heightHeaderRef}> 
             <Answer title={'Категории'} category={ prod.text }>
               {
   
@@ -202,10 +200,10 @@ function CatalogScreen(props) {
                           height={height}
                           isScrolling={isScrolling}
                           onScroll={onChildScroll}
-                          width={360} 
+                          width={mobile ? 360 : 600} 
                           scrollTop={scrollTop}
                           rowCount={prod.array.length}
-                          rowHeight={630}
+                          rowHeight={mobile ? 630 : 970} 
                           rowRenderer={rowRenderer}
                         />
                       </div>
@@ -217,19 +215,7 @@ function CatalogScreen(props) {
                 }}>
                   <img width={20} src={arrowup} />
                 </div>
-              </div> 
-            </>
-            :
-            <>
-              {/* <Title margin="50px 0px 0px 0px" size={38} text={`Категория: ${prod.text}`} /> */}
-              {/* <FilterItem mobile={mobile} customclass="titleFilter" category={category} /> */}
-              <div className="cardMonumentContainer">
-              {
-                // prod.map((item, i) => (<CardsMonument key={i} category={category} count={item.count} img={item.img} title={item.title} description={item.description} price={item.price} id={item.id} prop={item.prop} info={item.info} />))
-              } 
-              </div> 
-            </>
-          }
+              </div>  
         </div>
       </div>
     );

@@ -249,8 +249,7 @@ export async function sendEmailServer(body,dispatch) {
     if(response.status === 200) { 
       dispatch(setPopupMainMsg(response.data.msg))
     }  
-  } catch (error) {
-    console.log(error,'#$#$%');
+  } catch (error) { 
     console.log(error)
     return error.response?.status;
   }

@@ -8,8 +8,7 @@ router.post('/sendmail',userController.sendConsult);
 router.post('/sendinfo',userController.sendInfo); 
 router.post('/uploader', fileMiddleware.any(), async (req, res) => { 
  
-  try {   
-    console.log(req.files[0].filename)
+  try {    
     return res.json(req.files[0].filename); 
   } catch(err) {  
     if (err instanceof multer.MulterError) {

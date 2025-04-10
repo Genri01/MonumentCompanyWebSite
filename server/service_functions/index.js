@@ -63,7 +63,7 @@ let objTmp = {}
 
  
 const getCategoryBtnBot = (products) => {
-  
+ 
   const arrCat = products.map(product => ({
     text: product.text, 
     subcategory: product.monuments.map(monument => ({
@@ -84,24 +84,22 @@ const getCatologNumberItem = (itemNumber, answer) => {
 
   products.map(product => { 
     if(product.text == answer[5]) {
-      product.monuments.map((monument) => {
-
-        if(monument.subtext == answer[6]) {
-
-          if(('Горизонтальный' == answer[6]) && ('Мрамор' == answer[5])) {
-            if((Number(itemNumber) > 85) && (Number(itemNumber) < 110)) {
+      product.monuments.map((monument) => { 
+        if(monument.subtext == answer[6]) {  
+          if(('Горизонтальный' == answer[6]) && ('Мрамор' == answer[5])) { 
+            if((Number(itemNumber) > 85) && (Number(itemNumber) < 110)) { 
               result = {
-                ...monument.items[itemNumber - 86], 
+                ...monument.items[ Number(Number(itemNumber) - 86 == monument.items.length ? number : itemNumber) - 86 ], 
               }
             } else {
               err = true
             }
-          } else {
-            if((Number(number) >= Number(monument.items[0].id)) && (Number(number) <= Number(monument.items[monument.items.length-1].id))) {
+          } else {   
+            if((Number(itemNumber) >= Number(monument.items[0].id)) && (Number(itemNumber) <= Number(monument.items[monument.items.length-1].id))) { 
               result = {
-                ...monument.items[number], 
-              }
-            } else {
+                ...monument.items[Number(number)], 
+              } 
+            } else { 
               err = true
             }
           } 

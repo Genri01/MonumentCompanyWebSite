@@ -24,36 +24,30 @@ function App() {
   },[]);
  
   return (
-    <div className="App"> 
-      {
-        mobile ?    
-        <>  
-         { 
-          bot_App ? <></> : <HeaderMenu  
-            mobile={mobile}  
-            page={page} 
-            onClick={(e) => {  
-              // localStorage.setItem('page',e.target.id);
-              dispatch(change_page(e.target.id));
-            }}   
-          />
-          }
-          <Main mobile={mobile} />
-        </> 
-      : 
-        <div className='desktop_error'>
-          <div>Переходи в Telegram!</div>
-          <div style={{margin: '50px 0px'}}>Отсканируй QR code и наш бот поможет тебе подобрать памятник!</div>
-          <QRCode
-            value={'https://t.me/MCshopingBot/mcshoping'}
-            bgColor="white"
-            style={{
-              marginBottom: 16,
-            }}
-          />
-        </div> 
-      }  
+    <div className="App">  
+        { 
+        bot_App ? <></> : <HeaderMenu  
+          mobile={mobile}  
+          page={page} 
+          onClick={(e) => {  
+            // localStorage.setItem('page',e.target.id);
+            dispatch(change_page(e.target.id));
+          }}   
+        />
+        }
+        <Main mobile={mobile} /> 
     </div>
+        // <div className='desktop_error'>
+        //   <div>Переходи в Telegram!</div>
+        //   <div style={{margin: '50px 0px'}}>Отсканируй QR code и наш бот поможет тебе подобрать памятник!</div>
+        //   <QRCode
+        //     value={'https://t.me/MCshopingBot/mcshoping'}
+        //     bgColor="white"
+        //     style={{
+        //       marginBottom: 16,
+        //     }}
+        //   />
+        // </div>  
   );
 }
 

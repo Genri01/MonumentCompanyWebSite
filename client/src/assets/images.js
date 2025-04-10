@@ -55,6 +55,7 @@ import slide_9 from  './images/slide_9.jpg';
 import slide_10 from  './images/slide_10.jpg';  
 import icont from  './images/icont.png';  
 import iconp from  './images/iconp.png';   
+import test from  './images/test.png';   
  
 // eslint-disable-next-line import/no-anonymous-default-export
  
@@ -115,5 +116,6 @@ export default {
   iconp,
   arrowup, 
   icont,
-  crossp
+  crossp,
+  test
 }

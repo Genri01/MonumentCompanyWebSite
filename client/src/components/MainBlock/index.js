@@ -62,7 +62,7 @@ export default function MainBlock(props) {
       {
         slideMain.map((item,i)=>( 
           <SwiperSlide key={i} >  
-            <div style={{ backgroundImage: `url(${item.backImg})`}} className="slider_container_main" >
+            <div style={{ backgroundImage: `url(${item.backImg})`, height: `${mobile ? '400px' : '800px'}`}} className="slider_container_main" >
               <div className="slider_text_main" >
                 {item.title} 
               </div>
