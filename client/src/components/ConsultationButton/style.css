@@ -1,0 +1,38 @@
+.btn-consultation {
+  display: flex;
+  padding: 14px 28px; 
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  border: 1px solid white;
+  border-radius: 6px; 
+  transition: background-color 0.3s ease;
+  position: absolute;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  cursor: pointer;
+}
+.mobile-btn-consultation {
+  display: flex; 
+  padding: 10px 5px; 
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  border: 1px solid white;
+  border-radius: 6px; 
+  transition: background-color 0.3s ease;
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  cursor: pointer;
+}
+
+.mobile-btn-consultation:hover,
+.btn-consultation:hover {
+  background-color: white;
+  color: #0056b3;
+}

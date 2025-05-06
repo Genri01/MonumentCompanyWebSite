@@ -1,5 +1,6 @@
 import telega from  './images/telega.png';    
 import phone from  './images/phone.svg';   
+import phone_b from  './images/phone_b.svg';   
 import around from  './images/around.svg';   
 import arrow from  './images/arrow.svg';   
 import arrowl from  './images/arrowl.png';   
@@ -56,11 +57,28 @@ import slide_10 from  './images/slide_10.jpg';
 import icont from  './images/icont.png';  
 import iconp from  './images/iconp.png';   
 import test from  './images/test.png';   
+import memorialmov from  './images/test.mov';   
  
+ 
+import insta from './images/insta.svg'; 
+import whatsapp from './images/whatsapp.svg'; 
+import viber from './images/viber.svg';  
+import email from './images/email.svg'; 
+import messages from './images/messages.svg'; 
+
+
+
+
 // eslint-disable-next-line import/no-anonymous-default-export
  
 export default {  
   telega, 
+  insta,
+  email,
+  viber,
+  phone_b,
+  messages,
+  whatsapp,
   around, 
   arrow, 
   arrowr, 
@@ -117,5 +135,6 @@ export default {
   arrowup, 
   icont,
   crossp,
-  test
+  test,
+  memorialmov
 }

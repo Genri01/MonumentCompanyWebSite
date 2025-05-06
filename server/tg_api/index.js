@@ -47,6 +47,8 @@
  const TGAPI = {
    initialBotBlank: botBlankStart,
    initialBotShoping: botShopingStart,
+   sendPdfToChannel,
+   sendPdfToUser
  }
 
  // const WebAppUrl = 'https://candid-granita-dc7078.netlify.app'
@@ -78,6 +80,7 @@
    // .replace(/`/gi, "\\`")
    // .replace(/\./g, "\\.");
  }
+
  async function checkProfile(ctx) {
    try {
      const {
@@ -350,6 +353,54 @@
      console.log('error Сообщение не отправленно', error);
    }
  }
+
+
+/**
+ * Отправляет PDF в канал
+ * @param {string} channelId — chat_id канала или @username
+ * @param {string} filePath — путь до PDF‑файла на диске
+ * @param {string} [caption] — подпись к документу
+ */
+async function sendPdfToChannel(channelId, filePath, caption = '') {
+  // проверка наличия файла
+  let bot = new Telegraf(process.env.TGBOT_API_KEY); // Токен бота
+  if (!fs.existsSync(filePath)) {
+    throw new Error(`Файл не найден: ${filePath}`);
+  }
+
+  try {
+    const stream = fs.createReadStream(filePath);
+    const res = await bot.sendDocument(channelId, stream, {
+      caption,
+      parse_mode: 'Markdown', // или HTML
+    });
+    console.log('Документ отправлен, message_id =', res.message_id);
+    return res;
+  } catch (err) {
+    console.error('Ошибка при отправке документа:', err);
+    throw err;
+  }
+}
+
+
+async function sendPdfToUser(chatId, filePath, caption = '') {
+  // проверка наличия файла 
+  let bot = new Telegraf(process.env.TGBOT_API_KEY); // Токен бота
+   
+  if (!fs.existsSync(filePath)) {
+    throw new Error(`Файл не найден: ${filePath}`);
+  }  
+
+  try {
+    await bot.telegram.sendDocument(chatId, { source: filePath }, { caption });
+    console.log(`Документ отправлен пользователю ${chatId}`);
+  } catch (error) {
+    console.error('Ошибка при отправке документа:', error);
+  }
+ 
+}
+
+
 
  function converPTtoCM(cm) {
    return cm * 567
@@ -1849,6 +1900,9 @@
        }
      } = ctx;
 
+
+     console.log(ctx);
+
      await clearSession(ctx);
      if(!await checkLockChat(ctx)) {  
      await addIdMsg(ctx, `${msgId}_s`);
@@ -2158,6 +2212,9 @@
          answer
        }
      } = ctx;
+
+
+     console.log(ctx);
 
      if (!await onRepeatBot(ctx) && !await checkLockChat(ctx)) {
        if (!individualQuestions) {

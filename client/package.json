@@ -22,7 +22,7 @@
     "react-virtualized": "^9.22.5",
     "react-yandex-maps": "^4.6.0",
     "redux": "^4.1.2",
-    "redux-devtools-extension": "^2.13.9", 
+    "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.4.1",
     "swiper": "^11.1.14",
     "web-vitals": "^2.1.4"
@@ -35,10 +35,10 @@
   },
   "eslintConfig": {
     "extends": [
-      "react-app", 
+      "react-app",
       "react-app/jest"
     ]
-  },  
+  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -51,6 +51,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://127.0.0.1:4000",
-  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
+  "proxy": "http://127.0.0.1:4000"
 }

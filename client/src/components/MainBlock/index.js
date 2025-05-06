@@ -4,7 +4,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Parallax,EffectFade, Autoplay } from 'swiper/modules';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';  
- 
+import ConsultationButton from '../ConsultationButton'
+import { setPopupVisible } from '../../redux/actions/app'
 import 'swiper/css';
 import 'swiper/css/effect-fade';
 import 'swiper/css/navigation';
@@ -66,6 +67,7 @@ export default function MainBlock(props) {
               <div className="slider_text_main" >
                 {item.title} 
               </div>
+              <ConsultationButton mobile={mobile} onClick={() => { dispatch((setPopupVisible(true)))}}/>
             </div>  
           </SwiperSlide>
         ))

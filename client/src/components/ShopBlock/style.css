@@ -17,6 +17,19 @@
    background-color: white;
  }
 
+ .mobileBtnRowContainer {
+  display: flex; 
+  flex-direction: column; 
+  align-items: center;
+  width: 100%; 
+ }
+
+ .btnRowContainer {
+  display: flex; 
+  flex-direction: row;
+  width: 100%;  
+ }
+
  .cross {
   display: flex;
   width: 35px;

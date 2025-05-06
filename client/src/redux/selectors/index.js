@@ -2,6 +2,7 @@
 export const app = {
   mobile: (state) => state.app.mobile, 
   app: (state) => state.app.app, 
+  visible_popup: (state) => state.app.visible_popup, 
 }
  
 export const cards = {

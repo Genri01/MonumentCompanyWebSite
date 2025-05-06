@@ -34,4 +34,11 @@ export function visible_footer(visible) {
     payload: visible
   }
 } 
+
+export function setPopupVisible(visible) {  
+  return {
+    type: ActionTypes.VISIBLE_POPUP,
+    payload: visible
+  }
+} 
  

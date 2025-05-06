@@ -1,6 +1,7 @@
 import ActionTypes from '../constants';
 import { API_URL } from '../../config/index';
 import axios from 'axios';
+import { setPopupVisible } from './app';
 
 export function setInitialDead(initial) {
   return {
@@ -247,7 +248,16 @@ export async function sendEmailServer(body,dispatch) {
     const response = await axios.post(`${API_URL}/sendmail`, requestOptions)
 
     if(response.status === 200) { 
-      dispatch(setPopupMainMsg(response.data.msg))
+      dispatch(setPopupMainMsg(response.data.msg));
+      dispatch(setConsultInitial('')) 
+      dispatch(setConsultTel(''));
+      dispatch(setConsultComent('')) 
+      dispatch(setBuy([]));
+      dispatch(clearBuy());
+      setTimeout(() => {
+        dispatch(setPopupVisible(false))  
+        dispatch(setPopupMainMsg('')); 
+      },5000);
     }  
   } catch (error) { 
     console.log(error)

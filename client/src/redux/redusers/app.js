@@ -3,6 +3,7 @@ import ActionTypes from '../constants';
 const initialState = {
   mobile: true, 
   app: true, 
+  visible_popup: false
 };
 
 export default function app(state = initialState, { type, payload }) { 
@@ -16,6 +17,11 @@ export default function app(state = initialState, { type, payload }) {
       return {
         ...state,
         app: payload
+      };   
+    case ActionTypes.VISIBLE_POPUP:
+      return {
+        ...state,
+        visible_popup: payload
       };   
     default:
       return state;
