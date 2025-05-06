@@ -58,6 +58,7 @@ export default function CartBlock(props) {
   const addres_region = useSelector(cart.addres_region);
   const delivery_method = useSelector(cart.delivery_method);
   const pay_method = useSelector(cart.pay_method); 
+  const insert = useSelector(cart.insert)
   const buy = useSelector(cart.buy);  
   // const width = useSelector(cart.width);
   // const material = useSelector(cart.material);
@@ -138,6 +139,8 @@ export default function CartBlock(props) {
                       delivery_method,
                       pay_method, 
                       buy, 
+                      sizeStone: insert.sizes[insert.activeBtn].size,
+                      sizeThumb: insert.sizes[insert.activeBtn].tumb,
                       // width: widthArr[width],
                       // material: materialArr[material],
                       fileName,
@@ -162,6 +165,8 @@ export default function CartBlock(props) {
                     delivery_method,
                     pay_method, 
                     buy, 
+                    sizeStone: insert.sizes[insert.activeBtn].size,
+                    sizeThumb: insert.sizes[insert.activeBtn].tumb,
                     // width: widthArr[width],
                     // material: materialArr[material],
                     fileName,
@@ -291,6 +296,8 @@ export default function CartBlock(props) {
         delivery_method,
         pay_method, 
         buy, 
+        sizeStone: insert.sizes[insert.activeBtn].size,
+        sizeThumb: insert.sizes[insert.activeBtn].tumb,
         // width: widthArr[width],
         // material: materialArr[material],
         fileName,
@@ -315,6 +322,8 @@ export default function CartBlock(props) {
       delivery_method,
       pay_method, 
       buy, 
+      sizeStone: insert.sizes[insert.activeBtn].size,
+      sizeThumb: insert.sizes[insert.activeBtn].tumb,
       // width: widthArr[width],
       // material: materialArr[material],
       fileName,
