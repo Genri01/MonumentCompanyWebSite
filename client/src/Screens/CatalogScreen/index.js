@@ -17,7 +17,7 @@ import images from '../../assets/images';
 import images_shared from '../../shared-images'
 import 'react-virtualized/styles.css';
 import './style.css'; 
- 
+ import { Helmet } from 'react-helmet-async';
 function CatalogScreen(props) {
 
   const { mobile } = props; 
@@ -107,6 +107,13 @@ function CatalogScreen(props) {
   }
  
     return (
+      <>
+      <Helmet>
+        <title>Полный Каталог Памятников и Надгробий от Компании Монумент</title>
+        <meta name="description" content="Откройте наш обширный каталог памятников и надгробий, включая качественные гранитные изделия, уникальные мемориальные комплексы и аксессуары для ухода за захоронениями. Найдите идеальный памятник, который увековечит память о ваших близких. Получите бесплатную консультацию для индивидуального дизайна памятника!" />
+        <meta name="keywords" content="профилактика памятников, памятники с гранитными вставками, краткий каталог памятников, услуги по установке памятников, скидки на памятники, обработка камня, консультации по памятникам, традиционные памятники, уникальные мемориальные решения" />
+      </Helmet>
+    
       <div className="catalog_screen" >  
         <div className='catalog_wrapper' ref={heightHeaderRef}> 
             <Answer title={'Категории'} category={ prod.text }>
@@ -218,6 +225,7 @@ function CatalogScreen(props) {
               </div>  
         </div>
       </div>
+      </>
     );
  
 }

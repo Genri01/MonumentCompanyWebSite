@@ -1,9 +1,9 @@
 import React from "react";
 import "./style.css";
 
-const ConsultationButton = ({ onClick, mobile }) => {
+const ConsultationButton = ({ top, right, left, bottom, onClick, mobile }) => {
   return (
-    <div  onClick={() => { onClick('e')}} className={`${mobile ? "mobile-btn-consultation" : "btn-consultation"}`}>
+    <div style={{ position: 'absolute', top, right, left, bottom }} onClick={() => { onClick('e')}} className={`${mobile ? "mobile-btn-consultation" : "btn-consultation"}`}>
       Получить консультацию
     </div>
   );

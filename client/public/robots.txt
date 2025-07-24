@@ -1,3 +1,9 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow:
+Disallow: /admin/
+Disallow: /cart/
+Disallow: /private/
+Disallow: /tmp/
+Allow: /
+
+Sitemap: https://monumentcompany.ru/sitemap.xml

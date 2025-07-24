@@ -49,8 +49,8 @@ app.use('/shared/images',express.static(path.join(__dirname,'..','shared','image
 
 app.listen(PORT,async()=>{ 
   
-  TGAPI.initialBotBlank();  
-  TGAPI.initialBotShoping();  
+  // TGAPI.initialBotBlank();  
+  // TGAPI.initialBotShoping();  
  
   // const totalHeapSize = v8.getHeapStatistics().total_available_size;
   // const totalHeapSizeGb = (totalHeapSize / 1024 / 1024 / 1024).toFixed(2); 

@@ -6,11 +6,10 @@
   font-weight: bold;
   border: 1px solid white;
   border-radius: 6px; 
-  transition: background-color 0.3s ease;
-  position: absolute;
-  bottom: 100px;
-  left: 50%;
-  transform: translateX(-50%);
+  transition: background-color 0.3s ease; 
+  /* bottom: 100px;
+  left: 50%; */
+  /* transform: translateX(-50%); */
   z-index: 2;
   cursor: pointer;
 }
@@ -22,13 +21,12 @@
   font-weight: bold;
   border: 1px solid white;
   border-radius: 6px; 
-  transition: background-color 0.3s ease;
-  position: absolute;
-  bottom: 40px;
-  left: 50%;
-  transform: translateX(-50%);
+  transition: background-color 0.3s ease; 
   z-index: 2;
   cursor: pointer;
+    bottom: 50px!important; 
+  left: 50% !important; 
+    transform: translateX(-50%);
 }
 
 .mobile-btn-consultation:hover,

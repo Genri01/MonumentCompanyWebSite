@@ -2,9 +2,10 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';  
 import { Link, useNavigate,useLocation } from 'react-router-dom'; 
 import { header } from '../../redux/selectors';
-import { change_page } from '../../redux/actions/app'; 
+import { setPopupVisible } from '../../redux/actions/app'; 
 import images from '../../assets/images';
 import { telephone } from '../../config/index' 
+import ConsultationButton from '../ConsultationButton'
 import './style.css';
 
 function HeaderMenu(props) {
@@ -19,52 +20,75 @@ function HeaderMenu(props) {
  
   },[page]); 
 
-  const {hash, key} = useLocation()
+  const {hash, key} = useLocation();
+ 
   useEffect(()=>{
-      // if(hash){
-      //    const targetElement = document.getElementById(hash.substring(1))
-      //     targetElement?.scrollIntoView({behavior: 'smooth'})
-      // }
+      if(hash){
+        console.log(hash.substring(1));
+        const targetElement = document.getElementById(hash.substring(1))
+        targetElement?.scrollIntoView({behavior: 'smooth'})
+      }
   }, [key, hash])
-
+ 
   const headers_tab = [
     {
-      title: 'Главная',
-      key:"main",
-      rout: '/',
+      title: 'Макеты',
+      key:"makets",
+      rout: '/#maket',
+    },  
+    {
+      title: 'Услуги',
+      key:"uslugis",
+      rout: '/#uslugi',
     },
+    {
+      title: 'Пример установки',
+      key:"primers",
+      rout: '/#primer',
+    }, 
     {
       title: 'Каталог',
-      key:"all",
+      key:"catalog",
       rout: '/app/all',
-    },
-    {
-      title: 'Наши работы',
-      key:"works",
-      rout: '/works',
-    },
-    {
-      title: 'Отзывы',
-      key:"feedbacks",
-      rout: '/#feedback',
-    },
+    },  
   ];
  
   let st = {}
  
     return (
       <div className={` ${ mobile ? 'mobileHeaderWrapper' : 'headerWrapper' }`}> 
-        <div className='mobileBottomHeader'>
+        <div  style={{flexWrap: mobile ? 'nowrap' : 'wrap' }}  className='mobileBottomHeader'>
         <div className='mobileLableContainer'>
-          <div className='textLogoContainer'>
-            <div style={{fontSize: `${mobile ? '15px' : '25px'}`, width: `${mobile ? '35px' : '65px'}`, height: `${mobile ? '35px' : '65px'}`}} className="mobileLogomini">MC</div>
-            <div style={{fontSize: `${mobile ? '14px' : '28px'}`}} className="mobileLogo">
-              <div>Monument</div>
-              <div>Company</div>
-            </div> 
-          </div> 
+          <Link style={{ textDecoration: 'none', }} to={"/"}>
+            <div className='textLogoContainer'>
+              <div style={{fontSize: `${mobile ? '15px' : '25px'}`, width: `${mobile ? '35px' : '65px'}`, height: `${mobile ? '35px' : '65px'}`}} className="mobileLogomini">MC</div>
+              <div style={{fontSize: `${mobile ? '14px' : '28px'}`}} className="mobileLogo">
+                <div>Monument</div>
+                <div>Company</div>
+              </div> 
+            </div>
+          </Link>
         </div>
-        <ul className="mobile-header-extras">
+        <div className="catigories_heads">
+        { !mobile && headers_tab.map(({ key, rout, title }) => {
+            st = key === page ? 'active' : ''
+            return <Link key={key} to={rout}><div style={{ minWidth: key == 'works' ? '140px' : key == 'view' ? '185px' : '0px' }} id={key} className={`tab ${st}`} onClick={(e) => { onClick(e); }}>{title}</div></Link>
+          })
+        }
+        {
+         !mobile &&  <div style={{width: '100px', height: '50px', position:'relative'}}>
+            <div className="consultation-button-wrapper">
+              <ConsultationButton
+                mobile={mobile}
+                onClick={() => dispatch(setPopupVisible(true))}
+              />
+            </div>
+          </div>
+        }
+         
+        </div>  
+
+        <ul className="mobile-header-extras"> 
             {/* <li>
                 <img  style={{marginLeft: '7px' }} src={local} alt="map" width="25" height="25" />
                 <div className="he-text"> 
@@ -93,3 +117,5 @@ function HeaderMenu(props) {
 }
 
 export default HeaderMenu;
+
+

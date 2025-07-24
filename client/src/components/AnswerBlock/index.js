@@ -13,7 +13,7 @@ function AnswerBlock(props) {
       <div id="answer" className='mobileAnswerBlock_container'> 
         <Title size={28} margin="20px 0px 30px 0px" text="Остались вопросы" /> 
         <div className='mobileAnswerWrapper'>
-          <div className='mobileAnswerText'>
+          <div style={{width: mobile ? '90%' : '100%'}} className='mobileAnswerText'>
             Звоните с 08:00 до 18:00 или сделайте заказ в нашем Telegram Боте и Наш менеджер свяжется с Вами. 
           </div> 
           <div className='mobileAnswerButtons_container'> 
